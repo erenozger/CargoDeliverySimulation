@@ -1,10 +1,10 @@
 #ifndef QUEUE_H_
 #define QUEUE_H_
-
+#include <iostream>
 template<typename T>
 class Queue {
 public:
-	Queue();
+	Queue(): _size(0), _lastNode(NULL){};
 	~Queue();
 	bool isEmpty() const;
 	int size() const;
