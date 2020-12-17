@@ -47,3 +47,23 @@ int ReadingFunctions::findCityIndex(City citiesList[], string cityName,
 	}
 	return finalIndex;
 }
+
+void ReadingFunctions::displayCities(City citiesList[], int cityLength) {
+
+	for (int i = 0; i < cityLength; i++) {
+		cout << citiesList[i].cityName << endl;
+		cout << "Packages:" << endl;
+		int packageSize = citiesList[i].cityCargoTrucks.size();
+		if (packageSize != 0) {
+			for (int j = 0; j < packageSize; j++) {
+				string takenCargoPacketName;
+				takenCargoPacketName =
+						citiesList[i].cityCargoTrucks.getCargoPackage(j).itemName;
+				cout << takenCargoPacketName << endl;
+			}
+		}
+
+		cout << "Trucks:" << endl;
+		cout << "-------------" << endl;
+	}
+}

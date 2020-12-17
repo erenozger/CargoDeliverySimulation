@@ -7,6 +7,7 @@ public:
 
 	void readPackagesFromFile(City [],std::istream& packagesFile,int cityLength);
 	int findCityIndex(City [], string cityName,int cityLength);
+	void displayCities(City [],int cityLength);
 
 };
 

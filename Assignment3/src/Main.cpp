@@ -41,7 +41,7 @@ int main() {
 
 	readingFunctions.readPackagesFromFile(citiesList,packagesFile,cityCount);
 
-
+	readingFunctions.displayCities(citiesList,cityCount);
 
 	return 0;
 }

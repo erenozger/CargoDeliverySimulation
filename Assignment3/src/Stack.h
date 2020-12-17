@@ -1,14 +1,16 @@
 #ifndef STACK_H_
 #define STACK_H_
 #include <iostream>
+
 using namespace std;
 
 template<typename T>
 class Stack {
 public:
-	Stack() :_head(nullptr), _size(0) {};
-
-
+	Stack() :
+			_head(nullptr), _size(0) {
+	}
+	;
 
 	bool isEmpty() const;
 	int size() const;
@@ -20,6 +22,9 @@ public:
 	//Pop: Remove item from the top of the stack
 	void pop();
 
+	void stackDisplay() const;
+	T getCargoPackage(int index) const;
+
 private:
 	struct ListNode {
 		T item;
@@ -28,20 +33,57 @@ private:
 	ListNode *_head;
 	int _size;
 };
+template<typename T>
+bool Stack<T>::isEmpty() const {
+	if (_head == nullptr) {
+		return true;
+	} else {
+		return false;
+	}
 
-template <typename T>
+}
+template<typename T>
 int Stack<T>::size() const {
 	return _size;
 }
 
-template <typename T>
+template<typename T>
 void Stack<T>::push(const T &newItem) {
-	cout<<"push isteði geldi "<<endl;
+	ListNode *tempNode = new ListNode;
+
+	if (isEmpty()) {
+		tempNode->item = newItem;
+		tempNode->next = nullptr;
+		_head = tempNode;
+		_size++;
+
+	} else {
+		tempNode->item = newItem;
+		tempNode->next = _head;
+		_head = tempNode;
+		_size++;
+
+	}
+
+}
+template<typename T>
+void Stack<T>::stackDisplay() const {
+
 }
 
+template<typename T>
+T Stack<T>::getCargoPackage(int index) const {
 
+	ListNode *tempNode = new ListNode;
+	tempNode = _head;
+	if (index == 0) {
+		return _head->item;
 
+	} else {
+		for (int i = 0; i < index; i++)
+			tempNode = tempNode->next;
+		return tempNode->item;
+	}
 
-
-
+}
 #endif /* STACK_H_ */
