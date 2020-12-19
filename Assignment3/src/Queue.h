@@ -6,7 +6,7 @@ template<typename T>
 class Queue {
 public:
 	Queue(): _size(0), _frontNode(nullptr), _rearNode(nullptr){};
-	//~Queue();
+	~Queue();
 	bool isEmpty() const;
 	int size() const;
 	//Enqueue: Items are added to the back of the queue
@@ -28,7 +28,12 @@ private:
 	QueueNode *_rearNode;
 };
 
-
+template<typename T>
+Queue<T>::~Queue(){
+	while(_frontNode != nullptr) {
+	        dequeue();
+	    }
+}
 template<typename T>
 bool Queue<T>::isEmpty() const{
 	if(_rearNode == nullptr){
@@ -66,8 +71,8 @@ void Queue<T>::dequeue(){
 	QueueNode *tempNode = new QueueNode;
 	tempNode = _frontNode;
 	if(_frontNode == nullptr){
-		throw std::invalid_argument(
-						"The queue is already empty, nothing to pop.");
+		cout<<(
+						"The queue is already empty, nothing to pop.")<<endl;
 	}else{
 		if(tempNode ->next != nullptr){
 			tempNode = tempNode->next;

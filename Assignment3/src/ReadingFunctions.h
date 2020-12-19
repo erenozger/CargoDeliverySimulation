@@ -11,7 +11,7 @@ public:
 	void readTrucksFromFile(City[], std::istream &trucksFile, int cityLength);
 	void readMissions(City[], std::istream &missionsFile, int cityLength,TruckPackage &truckPackage);
 	void doMissionOperations(City[], int cityLength, string, string,string, int, int,string,TruckPackage &truckPackage );
-	void displayCities(City[], int cityLength);
+	void displayCities(City[], int cityLength,std::ostream &outputFile);
 
 	void displayLinkedList(TruckPackage &truckPackage);
 

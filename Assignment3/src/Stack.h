@@ -11,7 +11,7 @@ public:
 			_head(nullptr), _size(0) {
 	}
 	;
-
+	~Stack();
 	bool isEmpty() const;
 	int size() const;
 
@@ -32,6 +32,14 @@ private:
 	ListNode *_head;
 	int _size;
 };
+
+
+template<typename T>
+Stack<T>::~Stack() {
+    while(_head != nullptr) {
+        pop();
+    }
+}
 template<typename T>
 bool Stack<T>::isEmpty() const {
 	if (_head == nullptr) {
@@ -75,8 +83,7 @@ template<typename T>
 void Stack<T>::pop() {
 	ListNode *tempNode = new ListNode;
 	if (_head == nullptr) {
-		throw std::invalid_argument(
-				"The list is already empty, nothing to pop.");
+		cout<<("The list is already empty, nothing to pop.")<<endl;
 	}
 
 	tempNode = _head;

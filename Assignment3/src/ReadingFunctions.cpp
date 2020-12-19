@@ -76,10 +76,9 @@ void ReadingFunctions::readTrucksFromFile(City citiesList[],
 		truckName = wholeLine[0];
 		targetCity = wholeLine[1];
 		truckPower = wholeLine[2];
-		cout<<"Truck name : "<<truckName<<" ---targetCity : "<<targetCity<<" ---truckPower : "<<truckPower<<endl;
 
 		currentCityIndex = findCityIndex(citiesList, targetCity, cityLength);
-		cout<<"buraya da geldi"<<endl;
+
 
 		CargoItem newItem;
 		newItem.itemName = truckName;
@@ -87,7 +86,7 @@ void ReadingFunctions::readTrucksFromFile(City citiesList[],
 		newItem.itemIndex = -1;
 
 		citiesList[currentCityIndex].cityCargoTrucks.enqueue(newItem);
-		cout<<"enqueue tamamlandý!"<<endl;
+
 	}
 
 }
@@ -136,7 +135,7 @@ void ReadingFunctions::doMissionOperations(City citiesList[], int cityLength,
 		indicesSize++;
 	}
 	int indicesArray[indicesSize];
-	cout<<"indicesSize : "<<indicesSize<<endl;
+
 	ss.clear();
 	ss.seekg(0, ios::beg);
 	int midwayCount = 0;
@@ -144,8 +143,7 @@ void ReadingFunctions::doMissionOperations(City citiesList[], int cityLength,
 		indicesArray[midwayCount] = std::stoi(parseString);
 		midwayCount++;
 	}
-	cout << "indicesArray 0 : " << indicesArray[0] << endl;
-	cout << "indicesArray 1 : " << indicesArray[1] << endl;
+
 
 	int startingStationIndex = findCityIndex(citiesList, startingStation,
 			cityLength);
@@ -173,15 +171,13 @@ void ReadingFunctions::doMissionOperations(City citiesList[], int cityLength,
 		citiesList[midwayStationIndex].cityPackages.pop();
 	}
 	;
-	ReadingFunctions readingFunctions;
-	readingFunctions.displayLinkedList(currentTruck);
+	//ReadingFunctions readingFunctions;
+	//readingFunctions.displayLinkedList(currentTruck);
 	for (int z = 0; z < midwayCount; z++) {
 		int deleteIndex = indicesArray[z];
 		CargoItem currentCargoItem;
 		currentCargoItem = currentTruck.truckWithPackages.getLLItem(
 				deleteIndex + 1);
-		cout << "currentCargoItem.itemName : " << currentCargoItem.itemName
-				<< endl;
 		currentCargoItem.itemIndex = -1;
 		citiesList[midwayStationIndex].cityPackages.push(currentCargoItem);
 	}
@@ -190,10 +186,9 @@ void ReadingFunctions::doMissionOperations(City citiesList[], int cityLength,
 	sort(indicesArray, indicesArray + indicesSize, std::greater<int>());
 	for (int i = 0; i < midwayCount; i++) {
 		int deleteIndex = indicesArray[i];
-		cout << "deleteIndex : " << deleteIndex << endl;
 		currentTruck.truckWithPackages.deleteFromLL(deleteIndex);
 	}
-	readingFunctions.displayLinkedList(currentTruck);
+	//readingFunctions.displayLinkedList(currentTruck);
 	int lastPackageCount = takenCountFromStart + takenCountFromMidway
 			- midwayCount;
 	CargoItem currentCargoItem;
@@ -204,37 +199,37 @@ void ReadingFunctions::doMissionOperations(City citiesList[], int cityLength,
 		currentCargoItem = currentTruck.truckWithPackages.getLLItem(1);
 		citiesList[targetStationIndex].cityPackages.push(currentCargoItem);
 		currentTruck.truckWithPackages.deleteFromLL(0);
-		readingFunctions.displayLinkedList(currentTruck);
+		//readingFunctions.displayLinkedList(currentTruck);
 	}
 	currentTruck.truckWithPackages.deleteFromLL(0);
 
 }
-void ReadingFunctions::displayCities(City citiesList[], int cityLength) {
+void ReadingFunctions::displayCities(City citiesList[], int cityLength,std::ostream &outputFile) {
 
 	for (int i = 0; i < cityLength; i++) {
-		cout << citiesList[i].cityName << endl;
-		cout << "Packages:" << endl;
+		outputFile << citiesList[i].cityName << endl;
+		outputFile << "Packages:" << endl;
 		int packageSize = citiesList[i].cityPackages.size();
 		if (packageSize != 0) {
 			for (int j = 0; j < packageSize; j++) {
 				string takenCargoPacketName;
 				takenCargoPacketName =
 						citiesList[i].cityPackages.getCargoPackage(j).itemName;
-				cout << takenCargoPacketName << endl;
+				outputFile << takenCargoPacketName << endl;
 			}
 		}
-		cout << "Trucks:" << endl;
+		outputFile << "Trucks:" << endl;
 		int truckSize = citiesList[i].cityCargoTrucks.size();
 		if (truckSize != 0) {
 			for (int j = 0; j < truckSize; j++) {
 				string takenTruckName;
 				takenTruckName =
 						citiesList[i].cityCargoTrucks.getTruck(j).itemName;
-				cout << takenTruckName << endl;
+				outputFile << takenTruckName << endl;
 			}
 
 		}
-		cout << "-------------" << endl;
+		outputFile << "-------------" << endl;
 	}
 }
 

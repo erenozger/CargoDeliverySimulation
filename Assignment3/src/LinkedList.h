@@ -66,12 +66,9 @@ void LinkedList<T>::insertToLL(const T &newItem) {
 }
 template<typename T>
 void LinkedList<T>::deleteFromLL(int deleteIndex) {
-	LinkedListNode *tempNode = new LinkedListNode;
+
 	_searchLL = _truckLL->next;
 	if (_truckLL == _truckLL->next) {
-		free(_searchLL);
-		free(_headLL);
-		free(_truckLL);
 		_size--;
 		_searchLL = nullptr;
 		_headLL = nullptr;
@@ -79,9 +76,9 @@ void LinkedList<T>::deleteFromLL(int deleteIndex) {
 
 	} else {
 		for (int i = 0; i < deleteIndex; i++) {
-			if(_searchLL -> next == _truckLL){
+			if (_searchLL->next == _truckLL) {
 				break;
-			}else{
+			} else {
 				_searchLL = _searchLL->next;
 			}
 
@@ -94,7 +91,6 @@ void LinkedList<T>::deleteFromLL(int deleteIndex) {
 		_size--;
 
 	}
-
 
 }
 template<typename T>
