@@ -12,9 +12,13 @@ public:
 	;
 	bool isEmpty() const;
 	int size() const;
+
+	//Insert element to Linked list.
 	void insertToLL(const T &newItem);
+	//Delete given position element from LinkedList.
 	void deleteFromLL(int deleteIndexm);
 
+	//Return the element of given position.
 	T getLLItem(int index) const;
 
 private:
@@ -29,6 +33,7 @@ private:
 	int _size;
 };
 
+//Checks if the LINKEDLIST is empty.
 template<typename T>
 bool LinkedList<T>::isEmpty() const {
 	if (_headLL == nullptr) {

@@ -7,6 +7,7 @@ using namespace std;
 template<typename T>
 class Stack {
 public:
+
 	Stack() :
 			_head(nullptr), _size(0) {
 	}
@@ -22,6 +23,7 @@ public:
 	//Pop: Remove item from the top of the stack
 	void pop();
 
+	//Get one cargo package from its index in stack position.
 	T getCargoPackage(int index) const;
 
 private:
@@ -40,6 +42,8 @@ Stack<T>::~Stack() {
         pop();
     }
 }
+
+//Checks if the STACK is empty.
 template<typename T>
 bool Stack<T>::isEmpty() const {
 	if (_head == nullptr) {
@@ -54,6 +58,7 @@ int Stack<T>::size() const {
 	return _size;
 }
 
+
 template<typename T>
 void Stack<T>::push(const T &newItem) {
 	ListNode *tempNode = new ListNode;
@@ -63,12 +68,15 @@ void Stack<T>::push(const T &newItem) {
 		tempNode->next = nullptr;
 		_head = tempNode;
 		_size++;
+		//If stack is empty its create new tempNode and sets it equal to _head.
 
 	} else {
 		tempNode->item = newItem;
 		tempNode->next = _head;
 		_head = tempNode;
 		_size++;
+		//If stack is non empty its create new tempNode and
+		//sets it to next element and it will be _head again.
 	}
 
 }

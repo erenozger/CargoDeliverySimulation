@@ -16,6 +16,7 @@ public:
 	//Get Front: Take a look at the first item
 	void getFront(T &queueTop) const;
 
+	//Get one cargo truck from its index in queue position.
 	T getTruck(int index) const;
 
 private:
@@ -34,6 +35,8 @@ Queue<T>::~Queue(){
 	        dequeue();
 	    }
 }
+
+//Checks if the QUEUE is empty.
 template<typename T>
 bool Queue<T>::isEmpty() const{
 	if(_rearNode == nullptr){
