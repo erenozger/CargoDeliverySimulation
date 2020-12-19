@@ -12,6 +12,7 @@
 #include "City.h"
 #include "Stack.h"
 #include "Queue.h"
+#include "LinkedList.h"
 #include "ReadingFunctions.h"
 
 using namespace std;
@@ -29,6 +30,7 @@ int main() {
 	int cityCount = 0;
 	while (std::getline(citiesFile, line)) {
 		cityCount += 1;
+
 	}
 	int index = 0;
 	citiesFile.clear();
@@ -38,10 +40,20 @@ int main() {
 		citiesList[index].cityName = city;
 		index += 1;
 	}
-
+	TruckPackage currentTruck;
 	readingFunctions.readPackagesFromFile(citiesList,packagesFile,cityCount);
 
-	readingFunctions.displayCities(citiesList,cityCount);
+	readingFunctions.readTrucksFromFile(citiesList,trucksFile,cityCount);
+	cout<<"buraya kadar geldi"<<endl;
 
+	readingFunctions.readMissions(citiesList,missionsFile,cityCount,currentTruck);
+
+	readingFunctions.displayCities(citiesList,cityCount);
+	//readingFunctions.displayLinkedList(currentTruck);
+
+	citiesFile.close();
+	packagesFile.close();
+	trucksFile.close();
+	missionsFile.close();
 	return 0;
 }

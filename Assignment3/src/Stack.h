@@ -22,7 +22,6 @@ public:
 	//Pop: Remove item from the top of the stack
 	void pop();
 
-	void stackDisplay() const;
 	T getCargoPackage(int index) const;
 
 private:
@@ -62,13 +61,28 @@ void Stack<T>::push(const T &newItem) {
 		tempNode->next = _head;
 		_head = tempNode;
 		_size++;
-
 	}
 
 }
-template<typename T>
-void Stack<T>::stackDisplay() const {
 
+template<typename T>
+void Stack<T>::getTop(T &stackTop) const {
+	stackTop = _head->item;
+
+}
+
+template<typename T>
+void Stack<T>::pop() {
+	ListNode *tempNode = new ListNode;
+	if (_head == nullptr) {
+		throw std::invalid_argument(
+				"The list is already empty, nothing to pop.");
+	}
+
+	tempNode = _head;
+	_head = _head->next;
+	free(tempNode);
+	_size--;
 }
 
 template<typename T>

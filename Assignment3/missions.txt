@@ -1,2 +1,2 @@
-Istanbul-Ankara-Erzurum-2-3-0,1
-Ankara-Denizli-Antalya-3-1-1,2,0
+Konya-Urfa-Mardin-3-1-0,3
+Mardin-Adana-Urfa-4-2-2,3,4
